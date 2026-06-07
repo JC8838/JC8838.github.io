@@ -77,7 +77,7 @@
 <body>
 
 <div class="container">
-    <a href="Testport.html" class="back-link">← Retour à l'accueil</a>
+    <a href="index.html" class="back-link">← Retour à l'accueil</a>
     
     <header>
         <h1>Robot Sumo</h1>
@@ -190,9 +190,9 @@ Le but est d'abaisser les tensions qui arrivent à la broche +. Nous avons calcu
 une broche du pont en H qui, lorsqu'elle ne reçoit rien, coupe l'alimentation des moteurs. Sur l'alimentation de ce composant et sur celle du régulateur linéaire
 (le rectangle en haut à droite de la partie acquisition), nous observons la présence de condensateurs (C1, C2 et C3). Leur objectif est de "lisser" la tension d'alimentation à 5V ; ce sont de petites batteries
 capables de se charger et se décharger très rapidement. Lorsque la tension augmente, ils se chargent, puis lorsqu'il y a une chute de tension, ils se déchargent, relevant ainsi la tension d'alimentation.</p>
-<p><br/> //Insérer ici schéma pont en H// Je vais ici faire une explication sur le fonctionnement du pont en H car c'est un composant essentiel au fonctionnement du robot.
+<p><br/> <img src="image/ponth.png" alt="Schema pont en H" style="width:     70%; height: auto;"> <br/>Je vais ici faire une explication sur le fonctionnement du pont en H car c'est un composant essentiel au fonctionnement du robot.
     <br/> Comme nous pouvons le voir sur le schéma, un pont en H est composé de quatre interrupteurs (S1, S2, S3, S4). Les moteurs électriques tels que ceux que nous utilisons peuvent tourner dans les deux sens de rotation ; il suffit d'inverser le branchement.
-C'est le rôle du pont en H. En effet, si S1 Signes et S4 sont fermés et S2 et S3 ouverts, alors le courant va passer comme le tracé de la ligne verte. À l'inverse, si S2 et S3 sont fermés, alors le courant va passer comme sur la ligne rouge. Le composant que nous utilisons permet de faire ça en le commandant par logiciel.
+C'est le rôle du pont en H. En effet, si S1 et S4 sont fermés et S2 et S3 ouverts, alors le courant va passer comme le tracé de la ligne verte. À l'inverse, si S2 et S3 sont fermés, alors le courant va passer comme sur la ligne rouge. Le composant que nous utilisons permet de faire ça en le commandant par logiciel.
 <br/> Le composant D1 est une LED RGB (Red, Green, Blue) : elle peut générer du rouge, du vert, du bleu, et tout leur mélange ; elle peut donc générer toutes les couleurs existantes. Dans son fonctionnement, elle est assimilable à trois LED en une. C'est pour cela qu'elle a quatre broches : une masse commune et trois broches d'alimentation.</p>
 <h4>Conception informatique</h4>
 <p><br/>Lors de la conception informatique, nous avons compilé les fonctions précédemment citées dans l'architecture informatique afin de donner au robot le comportement souhaité. Nous 
@@ -213,10 +213,10 @@ Le plan de routage n'est pas à l'envers afin d'imprimer les pistes dans le bon 
         <p>Maintenant que nous avons fabriqué la carte, nous devons nous assurer que toutes les exigences formulées par le client sont respectées ; c'est pourquoi nous rédigeons un dossier de vérification. Il contient chaque test réalisé et le résultat associé.</p>  
         <p><br/> Dans un premier temps, nous avons vérifié les exigences mécaniques (dimensions, masse, etc.). Le robot devait avoir des dimensions inférieures à 100 mm de largeur et 100 mm de longueur. Afin de vérifier cette exigence, l'équipe enseignante nous a mis à disposition un gabarit. Si le robot rentre dedans, alors il est conforme.
         Notre robot était conforme à cette exigence.</p>
-        <p>We have ensuite vérifié l'exigence de masse : le robot devait peser moins de 500 g. Nous l'avons alors posé sur une balance, il était conforme.</p>
+        <p>Nous avons ensuite vérifié l'exigence de masse : le robot devait peser moins de 500 g. Nous l'avons alors posé sur une balance, il était conforme.</p>
                     <img src="image/robotsumbal.png" alt="Schema ddc préliminaire" style="width:     30%; height: auto;">
 
-        <br/> <p>Nous avons ensuite vérifié les exigences de la partie énergie.</p>
+        <br/> <p>Nous avons ensuite vérifié les exigences de la partie <strong>énergie</strong>.</p>
         <br/><p>La première exigence vérifiée fut l'exigence de sécurité de la batterie (l'exigence demandant que les moteurs soient coupés si sa tension est trop faible). Pour faire cela, nous avons alimenté le robot avec une alimentation stabilisée ; sa particularité est que nous
             pouvons modifier la tension d'alimentation durant le fonctionnement, et ce de manière précise. Nous alimentons donc le robot à la 
             tension de la batterie lorsqu'elle est chargée, c'est-à-dire 7,4 V, puis nous diminuons progressivement jusqu'à 6,7 V, tension à laquelle elle devrait s'arrêter. 
@@ -227,14 +227,28 @@ Le plan de routage n'est pas à l'envers afin d'imprimer les pistes dans le bon 
             avons donc mesuré l'intensité qui était nécessaire à son fonctionnement en ligne droite. Puis, par calcul, nous avons obtenu le temps d'autonomie correspondant à la capacité de la batterie. 
 Nous calculons une autonomie en ligne droite sans obstacle de 135 min ; notre robot est donc conforme à cette exigence.
         </p>
-        <br/><p>Ensuite, nous avons vérifié les exigences d'acquisition d'informations. <br/>
+        <br/><p>Ensuite, nous avons vérifié les exigences <strong>d'acquisition d'informations</strong>. <br/>
 La première exigence de cette partie est l'exigence relative à la détection de l'adversaire. Nous positionnons un gabarit représentant un robot adversaire à une distance de 40 cm ; nous constatons que notre robot ne le détecte pas. 
 Les capteurs sont bien capables de détecter à cette distance et plus, seulement ils sont légèrement trop inclinés vers le sol. Notre robot avait donc la capacité de détecter son adversaire à environ 35 cm. Nous avons ensuite repris la 
 relation liant les temps d'émission et de détection des infrarouges à la distance correspondante, et notre robot capte donc correctement l'adversaire.</p>
 <br/><p>Nous avons ensuite testé la fiabilité de notre robot. Pour ce faire, nous avons mis le robot en mode attente (lorsqu'il attend le départ
     du juge), puis nous avons éclairé fortement le capteur destiné à détecter le signal de la télécommande. Nous n'avons constaté aucun départ imprévu. La deuxième phase de ce test
-    consistait à s'assurer qu'il peut combattre même s'il y a de fortes lumières ; nous avons donc lancé un combat et éclairé fortement le robot, et nous n'avons constaté aucune anomalie dans son fonctionnement. Il est donc conforme.
-</p>  
+    consistait à s'assurer qu'il peut combattre même s'il y a de fortes lumières ; nous avons donc lancé un combat et éclairé fortement le robot, et nous n'avons constaté aucune anomalie 
+    dans son fonctionnement. Il est donc conforme.
+</p>
+<br/> <p>Afin de verifier l'exigence stipulant que le robot doit attendre le signal du juge (appuie sur une touche de la télécommande)
+    pour commencer le combat, nous avons allumer le robot, appuyer sur une touche de la télécommande et avons constaté que le robot a commencer le combat. Cette exigence est donc respectée. </p>  
+    <br/><p>Ensuite nous avons éffectuer les vérifications de la partie <strong>action</strong>.</p>
+    <p>Cette partie ne comporte qu'une exigence stipulant que le robot doit pouvoir trouné a droite, à gauche, aller en avant et en arrière.
+        Afin de vérifier cette exigence, nous allumons le robot lançons un combat, nous utilisont un gabarit afin de simuler le robot adverse. Nous constatons que le robot est capable d'aller dans toute les directions, l'exigence est donc vérifiée.
+    </p>
+    <br/><p>Pour finir, nous avons vérifier les exigences de <strong>traitement d'information</strong>.</p>
+    <p>L'objectif ici est de s'assurer que le robot se comporte bien comme attendu. Nous devons donc voir notre robot chercher l'adversaire tant qu'il ne le voit pas, l'attaquer lorsqu'il le trouve tout en le suivant dans ses déplacement. Il doit aussi rester dans l'arène en se référent au ligne blanche la démimitant. Lorsque nous
+        lancon un combat, nous constatons que le robot a bien le comportement attendu.
+    </p>
+    <h3>Conclusion</h3>
+    <p>Ce projet nous a permis de développer nos compétences de travail d'équipe, de conception mais aussi de fabrication de cartes électroniques, le tout en respectant rigoureusement un cahier des charges fourni par le client mais aussi en produisant des documents permettant de montrer au client que le produit en développement correspond à ses attentes.</p>
+
 </div>
 </div> 
 
